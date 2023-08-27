@@ -13,7 +13,7 @@ import axios from 'axios'
             axios.get(" https://dummyjson.com/products").then((response)=>{
             setData(response.data)
             setError(null)
-            // throw Error("not found data")
+            throw Error("An error occurred: ")
         }).catch(err=>{
            setError("The following error originated from your application code, not from Cypress.")
            setData(null)
