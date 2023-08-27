@@ -3,11 +3,11 @@ import axios from 'axios'
 
  const DisplayData = () => {
 
-  const[data , setData] = useState([])
+  const[data , setData] = useState(null)
 
   useEffect(()=>{
       function fetch(){
-          axios.get(" https://dummyjson.com/products").then((response)=>setData(response.data.products))
+          axios.get(" https://dummyjson.com/products").then((response)=>setData(response.data))
       }
       fetch()
   } , [])
