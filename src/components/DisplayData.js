@@ -15,7 +15,7 @@ import axios from 'axios'
             setError(null)
             // throw Error("not found data")
         }).catch(err=>{
-           setError(err)
+           setError("The following error originated from your application code, not from Cypress.")
            setData(null)
            console.log(err)
         }
