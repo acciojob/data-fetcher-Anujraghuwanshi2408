@@ -1,22 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+// import 'regenerator-runtime/runtime';
 
  const DisplayData = () => {
 
   const[data , setData] = useState(null)
+  const[error , setError] = useState(null)
 
   useEffect(()=>{
-      function fetch(){
-          axios.get(" https://dummyjson.com/products").then((response)=>setData(response.data))
+      function fetchData(){
+        
+            axios.get(" https://dummyjson.com/products").then((response)=>{
+            setData(response.data)
+            setError(null)
+            // throw Error("not found data")
+        }).catch(err=>{
+           setError(err)
+           setData(null)
+           console.log(err)
+        }
+        )
+        }
+        fetchData()
       }
-      fetch()
-  } , [])
+   , [])
   return (
     <div>
         <h1>Data Fetched from API</h1>
-        <pre>
+       {data != null && <pre>
         {JSON.stringify(data, null, 2)}
         </pre>
+      }
+
+      {
+        error != null && <h3>{error}</h3>
+      }
     </div>
   )
 }
